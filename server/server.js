@@ -37,6 +37,7 @@ app.use(BHomerouter);
 app.use(BRoomrouter);
 app.use(BBookingrouter);
 
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -44,7 +45,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 // });
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 
