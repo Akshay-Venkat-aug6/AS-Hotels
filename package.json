@@ -28,9 +28,12 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "start": "node server/server.js",
-		"server": "nodemon server/server.js"
-    
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "starth": "nodemon --watch server --exec babel-node server/server.js",
+    "client": "cd client && npm start",
+    "start": "concurrently -n 'server,client' -c 'red,green' \"npm run starth\"  \"npm run client\""
   },
   "author": "",
   "license": "ISC"
