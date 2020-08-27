@@ -28,12 +28,11 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
-    "starth": "nodemon --watch server --exec babel-node server/server.js",
-    "client": "cd client && npm start",
-    "start": "concurrently -n 'server,client' -c 'red,green' \"npm run starth\"  \"npm run client\""
+    "client": "npm start --prefix client",
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server/server.js",
+    "server": "concurrently \"npm run client\" \"npm run dev\""
   },
   "author": "",
   "license": "ISC"
