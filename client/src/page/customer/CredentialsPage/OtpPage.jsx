@@ -2,18 +2,20 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import OtpCard from '../../../components/customer/credentials/OtpCard';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 const OtpPage = ({emailId}) => {
   const history = useHistory();
 
   return (
     <>
+      <Helmet>
+        <title>
+          OTP Page
+        </title>
+      </Helmet>
       { emailId ?
           <>
-            {/* <HeaderContent 
-              title="AS Hotel"
-              body = "OTP Sended to your Registered Email"
-            /> */}
             <OtpCard />
           </>
         :

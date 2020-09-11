@@ -22,9 +22,12 @@ const Reviews = (props) => {
                     <Card className="card-box" style={{width: "50rem"}}>
                       <Card.Body>
                         <Card.Title className="display-inlineBlock">
-                          {list.personname}
+                          {list.username}
                         </Card.Title>
-                        <Card.Title className="display-inlineBlock float_right cursor">View</Card.Title>
+                        <br />
+                        <div className="display-inlineBlock">
+                          {list.reviews}
+                        </div>
                       </Card.Body>
                     </Card>
                   ))}
@@ -32,7 +35,7 @@ const Reviews = (props) => {
               </div>
               :
               <div className="b-title" style={{marginTop: "50px"}}>
-                No Rooms Added
+                No Reviews Added
               </div>
             }
         </div>

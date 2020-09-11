@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
 const Booking = (props) => {
+  console.log(props.list)
   return(
     <div className="b-box w-70 ml-15 mt-5 mb-5">
       <div className="p-5">
@@ -21,7 +22,7 @@ const Booking = (props) => {
                     <Card.Body>
                       <Card.Title className="">
                         <div>
-                          <p>{list.name}</p>
+                          <p>{list.username}</p>
                           <div>
                             <span className="font_10">
                               Rooms: 
@@ -57,11 +58,6 @@ const Booking = (props) => {
                           </div>
                         </div>
                       </Card.Title>
-                      <div className="b-title">
-                        <Button>
-                          View
-                        </Button>
-                      </div>
                     </Card.Body>
                   </Card>
                   ))}

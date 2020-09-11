@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { SEARCH } from '../../../store/customer/search/action';
 import { bindActionCreators } from "redux";
 import Loading from '../../../components/customer/Loading';
+import { Helmet } from 'react-helmet';
 
 class SearchPage extends React.Component{
   state = {
@@ -28,24 +29,31 @@ class SearchPage extends React.Component{
 
   render(){
     return (
-      <div>
-        <Header />
-        { this.props.isFind ? 
-          <div style={{display: "flex"}}>
-            <div style={{paddingTop: "5%", marginLeft: "6%"}}>
-              <Amenities />
+      <>
+        <Helmet>
+          <title>
+            Search Result | AS Service
+          </title>
+        </Helmet>
+        <div>
+          <Header />
+          { this.props.isFind ? 
+            <div style={{display: "flex"}}>
+              <div style={{paddingTop: "5%", marginLeft: "6%"}}>
+                <Amenities />
+              </div>
+              <div style={{paddingTop: "5%", marginLeft: "2%"}}>
+                <ModifyBar 
+                  checkIn={this.state.checkIn} checkOut={this.state.checkOut} noofadult={this.state.noofadult} noofrooms={this.state.noofrooms} partcode={this.state.partcode}
+                />
+                <HotelCard hotels ={this.props.hotels}/>
+              </div>
             </div>
-            <div style={{paddingTop: "5%", marginLeft: "2%"}}>
-              <ModifyBar 
-                checkIn={this.state.checkIn} checkOut={this.state.checkOut} noofadult={this.state.noofadult} noofrooms={this.state.noofrooms} partcode={this.state.partcode}
-              />
-              <HotelCard hotels ={this.props.hotels}/>
-            </div>
-          </div>
-           : 
-           <Loading />
-         }
-      </div>
+            : 
+            <Loading />
+          }
+        </div>
+      </>
     )
   }
 }

@@ -10,7 +10,7 @@ const HotelList = (props) => {
   const handleChoose = () => {
     history.push('/hotel-search/dom/details')
   }
-  
+  console.log(props.hotelslist)
   return (
     <>
       {props.hotelslist.map((list) => (

@@ -14,9 +14,8 @@ import { useParams } from 'react-router-dom';
 
 const HotelDetails = (props) => {
   const { id } = useParams();
-  const [rooms, setRooms] = useState(JSON.parse(sessionStorage.getItem('rooms')));
   const [reviews, setreviews] = useState(JSON.parse(sessionStorage.getItem('reviews')))
-  
+  console.log(props.reviewlist)
   useEffect(() => {
     props.GET_DETAILS({ id: id });
   }, [])
@@ -31,13 +30,13 @@ const HotelDetails = (props) => {
         <HotelGallery />
       </div>
       <div style={{paddingTop: "50px"}}>
-        <Rooms rooms={rooms}/>
+        <Rooms rooms={props.rooms} isRoomAvailable={props.isAvailable}/>
       </div>
       <div style={{paddingTop: "50px"}}>
         <Review />
       </div>
       <div style={{paddingTop: "50px"}}>
-        <ReviewList reviews={reviews} isReview={props.isReview}/>
+        <ReviewList reviews={props.reviewlist} isReview={props.isReview}/>
       </div>
     </div>
   )
@@ -45,8 +44,10 @@ const HotelDetails = (props) => {
 
 const mappingStateToProps = ({detail}) => {
   return { 
-    reviewlist: detail.reviewsList,
-    isReview: detail.isReview
+    reviewlist: detail.review,
+    isReview: detail.isReview,
+    isAvailable: detail.isRoomsAvailable,
+    rooms: detail.rooms
   };
 };
 

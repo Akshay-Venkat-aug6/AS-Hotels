@@ -12,6 +12,7 @@ const Profile = (props) => {
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
   // console.log(props.profile.address)
+  // console.log(address)
   useEffect(() => {
     props.GET_PROFILE();
   }, [])
@@ -35,6 +36,7 @@ const Profile = (props) => {
         password: password
       }
     }
+    console.log(updatePart)
     props.UPDATE_PROFILE(updatePart)
 
   }
@@ -64,16 +66,16 @@ const Profile = (props) => {
                 <div className="profile-details">
                   <form onSubmit={handleUpdate}>
                     <span>
-                      <TextField className="profile-input"  id="standard-basic" value={props.profile.name} disabled/>
+                      <TextField className="profile-input"  id="standard-basic" label="User Name" value={props.profile.name} disabled/>
                     </span>
                     <span>
-                      <TextField className="profile-input" id="standard-basic"  value={props.profile.email} disabled/>
+                      <TextField className="profile-input" id="standard-basic"  label="Email" value={props.profile.email} disabled/>
                     </span>
                     <span>
-                      <TextField className="profile-input" id="standard-basic"  value={props.profile.phoneno} disabled/>
+                      <TextField className="profile-input" id="standard-basic"  label="phone no" value={props.profile.phoneno} disabled/>
                     </span>
                     <span>
-                      <TextField className="profile-input" id="standard-basic"  value={address} onChange={(e) => {setAddress(e.target.value)}} required/>
+                      <TextField className="profile-input" id="standard-basic"  label="address" defaultValue={props.profile.address}  onChange={(e) => { setAddress(e.target.value) }} required/>
                     </span>
                     <span>
                       <TextField className="profile-input" id="standard-basic" label="Password" value={password} onChange={(e) => {setPassword(e.target.value)}} />

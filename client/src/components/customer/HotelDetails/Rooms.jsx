@@ -7,7 +7,6 @@ const Rooms  = (props) => {
   const history = useHistory();
   const { id } = useParams();
   const isCustomer = ( localStorage.getItem('isCustomer') === "true" );
-  // console.log(props)
   const handleBook = (roomid) => {
     if(isCustomer){
       history.push(`/hotel-checkout/dom/checkout/${id}/${roomid}`)
@@ -97,12 +96,4 @@ const Rooms  = (props) => {
   )
 };
 
-const mappingStateToProps = ({detail}) => {
-  return { 
-    isRoomAvailable: detail.isRoomsAvailable
-  };
-};
-
-export default connect(
-  mappingStateToProps
-)(Rooms);
+export default Rooms;
