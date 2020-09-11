@@ -30,9 +30,7 @@ const detailsReducer = (state = initialState, action) => {
           state.rooms.push(list)
         })
       }
-      sessionStorage.setItem('rooms', JSON.stringify(state.rooms));
-      sessionStorage.setItem('reviews', JSON.stringify(state.review));
-      sessionStorage.setItem('isAvailable', action.payload.isAvailable);
+      console.log(state.review)
       return {
         ...state,
         hotelname: action.payload.details.companyname,
@@ -43,7 +41,6 @@ const detailsReducer = (state = initialState, action) => {
         isRoomsAvailable: action.payload.isAvailable,
         isUserBooked: action.payload.isUserBooked,
         username: action.payload.username,
-        reviewsList: JSON.stringify(state.review),
         isReview: true
       }
     case 'GET_PROFILE':

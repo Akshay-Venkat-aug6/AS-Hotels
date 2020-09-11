@@ -23,7 +23,6 @@ import BusinessRoomPage from '../page/business/RoomPage';
 import BookingPage from '../page/business/BookingPage';
 
 // Error page
-import ErrorPage from '../page/404ErrorPage';
 import Errorpage from '../page/404ErrorPage';
 
 const Router = () => {
