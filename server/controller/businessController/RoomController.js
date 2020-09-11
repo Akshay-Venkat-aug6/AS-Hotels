@@ -17,19 +17,23 @@ const createRoom = async(req, res, next) => {
   }
   // console.log(urls)
  
-  // console.log(req.body)
+  console.log(req.body)
+  
+  
+  const amenities = req.body.amentites
+  
   let roomDetals = {
     roomname: req.body.roomname,
     roomcost: req.body.price,
     guestallowed: req.body.persons,
-    amenities: req.body.amentites,
+    amenities: amenities.split(','),
     roomtype: req.body.roomType,
     rooms: req.body.availableRooms,
     availablerooms: req.body.availableRooms,
     hotelid: hotelUser._id,
     imageUrl : urls
   }
-  // console.log(roomDetals)
+  // console.log(typeof amenities)
   var room_details = new Room(roomDetals);
   await room_details.save();
   const hotelDetails = await HotelDetails.findOne({_id: hotelUser._id});

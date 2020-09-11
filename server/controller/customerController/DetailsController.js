@@ -14,6 +14,7 @@ const getHotelDetails = async(req, res) => {
   let isUserBooked;
   let checkBooking;
   if(token){
+    console.log('token', token)
     customeruser = await User.findOne({token: token})
     checkBooking = await Booking.findOne({hotelid: id, userid: customeruser._id})
     if(checkBooking){
@@ -24,40 +25,32 @@ const getHotelDetails = async(req, res) => {
     }
   }
   else{
+    // console.log(token)
     customeruser = {
       username: ""
     }
   }
-  // console.log(customeruser)
+  console.log(id)
   const details = await Hotel.findOne({_id: id});
   const review = await Review.find({hotelid: id});
-  const rooms = await Rooms.find({hotelid: id});
-  const roomAvailable = []
-  let isAvailable = false;
-
-  if(rooms){
-    rooms.map((room) => {
-      if(parseInt(room.availablerooms, 10) > 0){
-        roomAvailable.push(room)
-        isAvailable = true
-      }
-    })
-  }
-  
-  if(details){
-    return res.send({
-      details: details, 
-      review: review,
-      isFind:true, 
-      rooms: roomAvailable, 
-      isAvailable: isAvailable,
-      isUserBooked: isUserBooked,
-      username: customeruser.username
-    })
+  const rooms = await Rooms.find({hotelid: id, availablerooms: { $gt: 0 }});
+  let isAvailable;
+  if(rooms.length != 0){
+    isAvailable = true
   }
   else{
-    
+    isAvailable = false
   }
+  return res.send({
+    details: details, 
+    review: review,
+    isFind:true, 
+    rooms: rooms, 
+    isAvailable: isAvailable,
+    isUserBooked: isUserBooked,
+    username: customeruser.username
+  })
+  
 };
 
 const getProfile = async(req, res) => {

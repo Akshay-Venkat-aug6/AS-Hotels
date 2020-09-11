@@ -95,9 +95,15 @@ const processPayment = async(req, res) => {
       console.log(available_room.availablerooms)
       
       const availabelRooms = available_room.availablerooms - parseInt(rooms, 10);
-      await Room.updateOne({_id: roomid}, { $set: { availablerooms: availabelRooms} })
-      await Booking.create( ...bookingData);
-      return res.json(result)
+      const bookings = await Booking.create({...bookingData});
+      if(bookings){
+        await Room.updateOne({_id: roomid}, { $set: { availablerooms: availabelRooms} })  
+        return res.json(result)
+      }
+      else{
+        return res.send({transaction: false})
+      }
+  
     }
   })
 }
